@@ -102,12 +102,10 @@ P.S: Используется GroupJoin для группировки карти
         *.Join(\_artists, p \=\> p.ArtistId, a \=\> a.Id, (p, a) \=\> new { p, a })*  
         *.Join(\_styles, x \=\> x.p.StyleId, s \=\> s.Id, (x, s) \=\> new { x.p, x.a, s })*  
         *.OrderBy(x \=\> x.p.Year)*  
-        *.FirstOrDefault();*
-
-    *if (data \== null) return "Нет данных.";*
-
-    *return $"Самая старая картина: \\"{data.p.Name}\\" ({data.p.Year}), " \+*  
-           *$"Художник: {data.a.Name}, Стиль: {data.s.Name}";*  
+        .FirstOrDefault();
+    if (data == null) return "Нет данных.";
+    return $"Самая старая картина: \"{data.p.Name}\" ({data.p.Year}),
+           "Художник: {data.a.Name}, Стиль: {data.s.Name}";  
 *}*
 
 P.S: Двойной Join для связывания Paintings с Artists, а затем результата со Style. Сортировка OrderBy по году.
